@@ -1,0 +1,13 @@
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\bin\Debug\DataGridFilterLibrary.dll
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\bin\Debug\DataGridFilterLibrary.pdb
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.csprojAssemblyReference.cache
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary_MarkupCompile.cache
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary_MarkupCompile.lref
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.g.resources
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.Properties.Resources.resources
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.csproj.GenerateResource.cache
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.dll
+C:\Users\User\Downloads\datagridfilterlibrary_src_vs2010\DataGridFilterLibrary\obj\Debug\DataGridFilterLibrary.pdb
