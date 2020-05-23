@@ -7,7 +7,7 @@
     
     xmlns:local="clr-namespace:DataGridFilterLibrary"
     xmlns:support="clr-namespace:DataGridFilterLibrary.Support">
-    
+
     <Style TargetType="{x:Type local:DataGridColumnFilter}">
 
         <Style.Resources>
@@ -15,13 +15,13 @@
                 <support:EnumDisplayEntry EnumValue="Undefined" DisplayString=""/>
                 <support:EnumDisplayEntry EnumValue="LessThan" DisplayString="&lt;"/>
                 <support:EnumDisplayEntry EnumValue="GreaterThan" DisplayString="&gt;"/>
-                <support:EnumDisplayEntry EnumValue="Equals" DisplayString="="/>    
+                <support:EnumDisplayEntry EnumValue="Equals" DisplayString="="/>
                 <support:EnumDisplayEntry EnumValue="Like" DisplayString="" ExcludeFromDisplay="True"/>
                 <support:EnumDisplayEntry EnumValue="Between" DisplayString="" ExcludeFromDisplay="True"/>
                 <support:EnumDisplayEntry EnumValue="LessThanOrEqual" DisplayString="&lt;="/>
                 <support:EnumDisplayEntry EnumValue="GreaterThanOrEqual" DisplayString="&gt;="/>
             </support:EnumDisplayer>
-            
+
             <support:CheckBoxValueConverter x:Key="checkBoxValueConverter" />
             <support:ComboBoxToQueryStringConverter x:Key="comboBoxToQueryStringConverter" />
             <support:DatePickerToQueryStringConverter x:Key="datePickerToQueryStringConverter" />
@@ -30,32 +30,38 @@
             <support:VisibilityToWidthConverter x:Key="visibilityToWidthConverter" />
             <support:MyBooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             <support:MyOppositeBooleanToVisibilityConverter x:Key="oppositeBooleanToVisibilityConverter" />
-            <support:ClearFilterButtonVisibilityConverter x:Key="clearFilterButtonVisibilityConverter" />                       
+            <support:ClearFilterButtonVisibilityConverter x:Key="clearFilterButtonVisibilityConverter" />
 
-            <Style TargetType="{x:Type support:DelayTextBox}">
-                <Setter Property="Background" Value="AliceBlue" />
+            <Style TargetType="support:DelayTextBox">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="BorderBrush" Value="LightGray"/>
+                <Setter Property="BorderThickness" Value="1"/>
             </Style>
 
-            <Style TargetType="{x:Type ComboBox}">
-                <Setter Property="Background" Value="AliceBlue" />
+            <Style TargetType="ComboBox">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="BorderBrush" Value="LightGray"/>
+                <Setter Property="BorderThickness" Value="0"/>
             </Style>
 
-            <Style TargetType="{x:Type CheckBox}">
-                <Setter Property="Background" Value="AliceBlue" />
+            <Style TargetType="CheckBox">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
             </Style>
 
-            <Style TargetType="{x:Type DatePicker}">
-                <Setter Property="Background" Value="AliceBlue" />
+            <Style TargetType="Calendar" x:Key="DateTimeCalendar">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="BorderBrush" Value="LightGray"/>
             </Style>
 
         </Style.Resources>
-        
+
         <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Self}, Path=IsControlInitialized, Converter={StaticResource booleanToHeightConverter}}"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DataGridColumnFilter}">
-                    
+
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
@@ -80,11 +86,11 @@
                                 Command="{Binding Path=(local:DataGridExtensions.ClearFilterCommand), RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                                                 
                                 Grid.Column="0" Name="PART_ClearFilterButton">
-                                
+
                                 <Button.Content>
-                                   Clear filter 
+                                    Clear filter
                                 </Button.Content>
-                                
+
                                 <Button.Visibility>
                                     <MultiBinding Converter="{StaticResource clearFilterButtonVisibilityConverter}">
                                         <Binding Path="IsFirstFilterControl" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -92,10 +98,10 @@
                                     </MultiBinding>
 
                                 </Button.Visibility>
-                                
+
                             </Button>
                             <!-- Clear Filter Button -->
-                            
+
                             <!-- Numeric and Text-->
                             <ComboBox 
                                 Visibility="Collapsed"
@@ -113,7 +119,7 @@
                                         Mode=TwoWay,
                                         Converter={StaticResource filterOperators}}">
                             </ComboBox>
-            
+
                             <support:DelayTextBox
  
                                     Visibility="Collapsed"
@@ -128,11 +134,11 @@
                                         Path=FilterCurrentData.QueryString,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=Explicit}"
-                                        Grid.Column="2" Name="PART_TextBoxFilter">
-                                
+                                        Grid.Column="2" x:Name="PART_TextBoxFilter">
+
                             </support:DelayTextBox>
                             <!-- Numeric -->
-                            
+
                             <!-- List -->
                             <ComboBox 
                                 Visibility="Collapsed"
@@ -158,7 +164,7 @@
                                 Name="PART_ComboBoxFilter" Grid.Column="2">
                             </ComboBox>
                             <!-- List -->
-                            
+
                             <!-- Boolean -->
                             <CheckBox 
                                 Visibility="Collapsed"
@@ -175,7 +181,7 @@
                                       Name="PART_CheckBoxFilter" 
                                       ClickMode="Press" HorizontalAlignment="Center" Grid.Column="2"></CheckBox>
                             <!-- Boolean -->
-                            
+
                             <!-- DateTime -->
                             <DatePicker
                                 Visibility="Collapsed"
@@ -195,7 +201,7 @@
                                     
                                 Name="PART_DatePickerFilter" Grid.Column="2" />
                             <!-- DateTime -->
-                            
+
                             <!-- NumericBetween -->
                             <Grid Grid.Column="2" 
                                   Visibility="Collapsed"
@@ -203,8 +209,8 @@
                                   Width="{Binding RelativeSource={RelativeSource Self}, 
                                                   Path=Visibility, 
                                                   FallbackValue=0,
-                                                  Converter={StaticResource visibilityToWidthConverter}}">                                  
-                                
+                                                  Converter={StaticResource visibilityToWidthConverter}}">
+
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
@@ -213,7 +219,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Margin="1" Grid.Column="0" VerticalAlignment="Center" Height="Auto" >From:</TextBlock>
-                                
+
                                 <support:DelayTextBox 
                                         Grid.Column="1" 
                                         VerticalAlignment="Top"
@@ -230,9 +236,9 @@
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=Explicit}">
                                 </support:DelayTextBox>
-                                
+
                                 <TextBlock Margin="1" Grid.Column="2" VerticalAlignment="Center" Height="Auto" >To:</TextBlock>
-                                
+
                                 <support:DelayTextBox 
                                         Grid.Column="3" 
                                         VerticalAlignment="Top"
@@ -251,7 +257,7 @@
                                 </support:DelayTextBox>
                             </Grid>
                             <!-- NumericBetween -->
-                            
+
                             <!-- DateTimeBetween -->
                             <Grid Grid.Column="2" 
                                   Name="PART_GridDatePickerFilterBetween"
@@ -312,9 +318,9 @@
                         </Grid>
 
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
-                        
+
                         <Trigger Property="IsTextFilterControl" Value="true">
                             <Setter TargetName="PART_ComboBoxFilterOperator" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_ComboBoxFilter" Property="Visibility" Value="Collapsed"/>
@@ -322,45 +328,45 @@
                             <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Collapsed"/>
-                            
-                            <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Visible"/> 
-                            
+
+                            <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Visible"/>
+
                         </Trigger>
 
                         <Trigger Property="IsNumericFilterControl" Value="true">
                             <Setter TargetName="PART_ComboBoxFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_CheckBoxFilter" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>  
-                            <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/> 
+                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Collapsed"/>
 
                             <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="PART_ComboBoxFilterOperator" Property="Visibility" Value="Visible"/>
-                        
+
                         </Trigger>
 
                         <Trigger Property="IsBooleanFilterControl" Value="true">
                             <Setter TargetName="PART_ComboBoxFilterOperator" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_ComboBoxFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>                            
+                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Collapsed"/>
-                            
+
                             <Setter TargetName="PART_CheckBoxFilter" Property="Visibility" Value="Visible"/>
-                            
+
                         </Trigger>
 
                         <Trigger Property="IsListFilterControl" Value="true">
                             <Setter TargetName="PART_ComboBoxFilterOperator" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_CheckBoxFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>                            
+                            <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Collapsed"/>
-                            
+
                             <Setter TargetName="PART_ComboBoxFilter" Property="Visibility" Value="Visible"/>
-                            
+
                         </Trigger>
 
                         <Trigger Property="IsDateTimeFilterControl" Value="true">
@@ -372,7 +378,7 @@
 
                             <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="PART_ComboBoxFilterOperator" Property="Visibility" Value="Visible"/>
-                        
+
                         </Trigger>
 
                         <Trigger Property="IsNumericBetweenFilterControl" Value="true">
@@ -382,9 +388,9 @@
                             <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Collapsed"/>
-                            
+
                             <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Visible"/>
-                            
+
                         </Trigger>
 
                         <Trigger Property="IsDateTimeBetweenFilterControl" Value="true">
@@ -394,7 +400,7 @@
                             <Setter TargetName="PART_DatePickerFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_TextBoxFilter" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_GridTextFilterBetween" Property="Visibility" Value="Collapsed"/>
-                            
+
                             <Setter TargetName="PART_GridDatePickerFilterBetween" Property="Visibility" Value="Visible"/>
                         </Trigger>
 
@@ -402,11 +408,11 @@
 
                 </ControlTemplate>
             </Setter.Value>
-            
+
         </Setter>
 
     </Style>
-    
+
     <Style x:Key="{ComponentResourceKey 
                    TypeInTargetAssembly={x:Type local:DataGridHeaderFilterControl}, 
                    ResourceId=DataGridHeaderFilterControlStyle}"
@@ -414,13 +420,13 @@
 
         <Style.Resources>
             <ResourceDictionary>
-                <support:MyBooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />     
+                <support:MyBooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             </ResourceDictionary>
 
         </Style.Resources>
 
         <Setter Property="Template">
-            
+
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
@@ -432,7 +438,7 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-  
+
                         <local:DataGridColumnFilter Margin="1" Grid.Column="0" Grid.Row="0"
                         
                             FilterCurrentData ="{Binding 
@@ -464,22 +470,26 @@
                         </local:DataGridColumnFilter>
 
 
-                        <theme:DataGridHeaderBorder Grid.Column="0" Grid.Row="1" SortDirection="{TemplateBinding SortDirection}"
-                                     IsHovered="{TemplateBinding IsMouseOver}"
+                        <theme:DataGridHeaderBorder Grid.Column="0" Grid.Row="1" 
+                                     SortDirection="{TemplateBinding SortDirection}"
+                                     IsHovered="True"
                                      IsPressed="{TemplateBinding IsPressed}"
                                      IsClickable="{TemplateBinding CanUserSort}"
-                                     Background="{TemplateBinding Background}"
+                                     Background="#dddddd"
                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                     Padding ="{TemplateBinding Padding}"
+                                     BorderThickness="1"
+                                     Padding ="5"
                                      SeparatorVisibility="{TemplateBinding SeparatorVisibility}"
-                                     SeparatorBrush="{TemplateBinding SeparatorBrush}">
+                                     SeparatorBrush="Gray">
 
-                            <TextBlock Grid.Column="0" Grid.Row="1"  Text="{TemplateBinding  Content}" 
+                            <TextBlock Grid.Column="0" Grid.Row="1"  
+                                  Text="{TemplateBinding  Content}" 
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       TextWrapping="Wrap"></TextBlock>
+                                  Padding="5"
+                                  FontFamily="Soguei UI"
+                                  TextWrapping="Wrap"></TextBlock>
 
                         </theme:DataGridHeaderBorder>
 
@@ -550,7 +560,7 @@
 
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>       
+        </Setter>
     </Style>
 
 </ResourceDictionary>
